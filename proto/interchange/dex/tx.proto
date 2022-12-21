@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package interchange.dex;
+
+option go_package = "interchange/x/dex/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc SendCreatePair  (MsgSendCreatePair ) returns (MsgSendCreatePairResponse );
+  rpc SendSellOrder   (MsgSendSellOrder  ) returns (MsgSendSellOrderResponse  );
+  rpc SendBuyOrder    (MsgSendBuyOrder   ) returns (MsgSendBuyOrderResponse   );
+  rpc CancelSellOrder (MsgCancelSellOrder) returns (MsgCancelSellOrderResponse);
+  rpc CancelBuyOrder  (MsgCancelBuyOrder ) returns (MsgCancelBuyOrderResponse );
+}
+message MsgSendCreatePair {
+  string sourceDenom      = 5;
+  string targetDenom      = 6;
+  string creator          = 1;
+  string port             = 2;
+  string channelID        = 3;
+  uint64 timeoutTimestamp = 4;
+}
+
+message MsgSendCreatePairResponse {}
+
+message MsgSendSellOrder {
+  string amountDenom      = 5;
+  int32  amount           = 6;
+  string priceDenom       = 7;
+  int32  price            = 8;
+  string creator          = 1;
+  string port             = 2;
+  string channelID        = 3;
+  uint64 timeoutTimestamp = 4;
+}
+
+message MsgSendSellOrderResponse {}
+
+message MsgSendBuyOrder {
+  string amountDenom      = 5;
+  int32  amount           = 6;
+  string priceDenom       = 7;
+  int32  price            = 8;
+  string creator          = 1;
+  string port             = 2;
+  string channelID        = 3;
+  uint64 timeoutTimestamp = 4;
+}
+
+message MsgSendBuyOrderResponse {}
+
+message MsgCancelSellOrder {
+  string creator     = 1;
+  string port        = 2;
+  string channel     = 3;
+  string amountDenom = 4;
+  string priceDenom  = 5;
+  int32  orderID     = 6;
+}
+
+message MsgCancelSellOrderResponse {}
+
+message MsgCancelBuyOrder {
+  string creator     = 1;
+  string port        = 2;
+  string channel     = 3;
+  string amountDenom = 4;
+  string priceDenom  = 5;
+  int32  orderID     = 6;
+}
+
+message MsgCancelBuyOrderResponse {}
+

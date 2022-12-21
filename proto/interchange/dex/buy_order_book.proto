@@ -1,0 +1,14 @@
+syntax = "proto3";
+import "interchange/dex/order.proto";
+package interchange.dex;
+
+option go_package = "interchange/x/dex/types";
+
+message BuyOrderBook {
+  string index = 1; 
+  string amountDenom = 2; 
+  string priceDenom = 3; 
+  OrderBook book = 4;
+
+}
+

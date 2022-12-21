@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package interchange.dex;
+
+import "gogoproto/gogo.proto";
+import "interchange/dex/params.proto";
+import "interchange/dex/sell_order_book.proto";
+import "interchange/dex/buy_order_book.proto";
+import "interchange/dex/denom_trace.proto";
+
+option go_package = "interchange/x/dex/types";
+
+// GenesisState defines the dex module's genesis state.
+message GenesisState {
+           Params        params            = 1 [(gogoproto.nullable) = false];
+           string        port_id           = 2;
+  repeated SellOrderBook sellOrderBookList = 3 [(gogoproto.nullable) = false];
+  repeated BuyOrderBook  buyOrderBookList  = 4 [(gogoproto.nullable) = false];
+  repeated DenomTrace    denomTraceList    = 5 [(gogoproto.nullable) = false];
+}
+
